@@ -14,6 +14,8 @@ const completed = require("../controllers/completed.js")
 
 const viewPage = require("../controllers/viewPage.js")
 
+const editPage = require("../controllers/editPage.js")
+
 //home
   app.get('/', homepage.index);
 
@@ -39,6 +41,11 @@ app.use(authenticateUser)
   //viewPage/notes
   app.get('/viewPage/:id', viewPage.index);
   app.post('/viewPage', viewPage.createNote);
+  app.post('/viewPage/status/:id', viewPage.status);
+
+  //editPage
+  app.get('/editPage/:id', editPage.index);
+  app.post('/editPage/:id', editPage.edit);
 }
 
 

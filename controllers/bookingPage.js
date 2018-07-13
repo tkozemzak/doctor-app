@@ -4,7 +4,6 @@ module.exports = {
   // CHANGE ME TO AN ACTUAL FUNCTION
   index: function(req, res) {
     knex("doctors").where("id", req.params.id).then((results)=>{
-      console.log(results);
       res.render("bookingPage", {results: results[0]});
 
     })

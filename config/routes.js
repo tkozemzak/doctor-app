@@ -1,7 +1,56 @@
 //Update the name of the controller below and rename the file.
-const template = require("../controllers/template.js")
+const homepage = require("../controllers/homepage.js")
 module.exports = function(app){
 
-  app.get('/', template.index);
-  app.post('/createname', template.createName);
+const bookingPage = require("../controllers/bookingPage.js")
+
+const loginPage = require("../controllers/loginPage.js")
+
+const doctorHome = require("../controllers/doctorHome.js")
+
+const confirmed = require("../controllers/confirmed.js")
+
+const completed = require("../controllers/completed.js")
+
+const viewPage = require("../controllers/viewPage.js")
+
+//home
+  app.get('/', homepage.index);
+
+  //booking
+  app.get('/bookingPage/:id', bookingPage.index);
+  app.post('/bookingPage/:id', bookingPage.create);
+
+app.use(authenticateUser)
+  //login/register
+  app.get('/loginPage', loginPage.index);
+  app.post('/login', loginPage.login);
+  app.post('/register', loginPage.register)
+
+  //doctorHome
+  app.get('/doctorHome/:id', doctorHome.index);
+
+  //Confirmed
+  app.get('/confirmed/:id', confirmed.index)
+
+  //Completed
+  app.get('/completed/:id', completed.index)
+
+  //viewPage
+  app.get('/viewPage/:id', viewPage.index)
+}
+
+
+
+
+
+
+
+
+function authenticateUser(req, res, next){
+  if(!req.session.user){
+    res.redirect('/');
+  } else {
+    next();
+  }
 }

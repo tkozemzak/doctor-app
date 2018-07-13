@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+    .appt-list {
+      border: solid;
+    }
+    .card {
+      border: solid;
+    }
+    </style>
+  </head>
+  <body>
+    <h1>Welcome Dr <%= results.name %> </h1>
+    <div class="buttons">
+      <ul>
+        <li>
+          <a href="/doctorHome/<%=results.id%>">Unconfirmed</a>
+        </li>
+        <li>
+          <a href="/confirmed/<%=results.id%>">Confirmed</a>
+        </li>
+        <li>
+          <a href="/completed/<%=results.id%>">Completed</a>
+        </li>
+      </ul>
+    </div>
+    <div class="appt-list">
+
+      <% for(let i=0; i<appts.length; i++){ %>
+          <% if(appts[i].status === 'confirmed'){ %>
+            <div class="card">
+              <h1>Name: <%= appts[i].patient_name %></h1>
+              <h3>Reason: <%= appts[i].reason %></h3>
+              <p>
+                Details: <%= appts[i].details %>
+              </p>
+              <p>
+                Date: <%= appts[i].date %>
+              </p>
+              <a href="/viewPage/<%=appts[i].id%>">View</a>
+            </div>
+          <% } %>
+
+        <% } %>
+        </div>
+  </body>
+</html>

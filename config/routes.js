@@ -36,8 +36,9 @@ app.use(authenticateUser)
   //Completed
   app.get('/completed/:id', completed.index)
 
-  //viewPage
-  app.get('/viewPage/:id', viewPage.index)
+  //viewPage/notes
+  app.get('/viewPage/:id', viewPage.index);
+  app.post('/viewPage', viewPage.createNote);
 }
 
 

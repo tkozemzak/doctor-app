@@ -42,18 +42,12 @@ app.use(authenticateUser)
   app.get('/viewPage/:id', viewPage.index);
   app.post('/viewPage', viewPage.createNote);
   app.post('/viewPage/status/:id', viewPage.status);
+  app.post('/viewPage/status/delete/:id', viewPage.delete)
 
   //editPage
   app.get('/editPage/:id', editPage.index);
   app.post('/editPage/:id', editPage.edit);
 }
-
-
-
-
-
-
-
 
 function authenticateUser(req, res, next){
   if(!req.session.user){

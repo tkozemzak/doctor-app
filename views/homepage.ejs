@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <style>
 
-    .card{
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
+    .card {
       border: solid;
     }
-    </style>
-  </head>
-  <body>
+  </style>
+</head>
 
-    <a href="/loginPage">Doctor Login</a>
+<body>
 
-    <h1>Doctors Available:</h1>
-    <% for(let i=0; i<results.length; i++){ %>
-      <div class="card">
-        <h2> <%= results[i].name %> </h2>
-        <a href="/bookingPage/<%= results[i].id %>">Book</a>
-      </div>
+  <a href="/loginPage">Doctor Login</a>
 
-      <% } %>
-  </body>
+  <h1>Doctors Available:</h1>
+  <% for(let i=0; i<results.length; i++){ %>
+    <div class="card">
+      <h2> <%= results[i].name %> </h2>
+      <a href="/bookingPage/<%=results[i].id%>">Book</a>
+    </div>
+
+    <% } %>
+</body>
+
 </html>

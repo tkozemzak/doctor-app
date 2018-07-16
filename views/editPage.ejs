@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-    <form action="/editPage/<%=appts.id%>" method="post">
-      <input type="text" name="patient_name" value="<%= appts.patient_name %>" />
-      <input type="date" name="date" value="<%= appts.date %>" />
-      <input type="text" name="reason" value="<%= appts.reason %>" />
-      <input type="text" name="details" value="<%= appts.details %>" />
-      <input type="submit" value="Update" />
-    </form>
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+
+<body>
+  <form action="/editPage/<%=appts.id%>" method="post">
+    <input type="text" name="patient_name" value="<%= appts.patient_name %>" />
+    <input type="date" name="date" value="<%= appts.date %>" />
+    <input type="text" name="reason" value="<%= appts.reason %>" />
+    <input type="text" name="details" value="<%= appts.details %>" />
+    <input type="submit" value="Update" />
+  </form>
+</body>
+
 </html>

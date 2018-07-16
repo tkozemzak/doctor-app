@@ -6,10 +6,10 @@ module.exports = {
     res.render("loginPage");
   },
 
-  login: function(req, res){
-    knex('doctors').where('email', req.body.email).then((results)=>{
+  login: function(req, res) {
+    knex('doctors').where('email', req.body.email).then((results) => {
       let user = results[0];
-      if(user.password === req.body.password){
+      if (user.password === req.body.password) {
         req.session.user = user;
 
         res.redirect(`/doctorHome/${user.id}`);
@@ -18,14 +18,14 @@ module.exports = {
       }
     })
   },
-  register: function(req, res){
+  register: function(req, res) {
     knex('doctors').insert({
       name: req.body.name,
       email: req.body.email,
       bio: req.body.bio,
       img_url: req.body.img_url,
       password: req.body.password
-    }).then(()=>{
+    }).then(() => {
       res.redirect('/loginPage')
     })
   },

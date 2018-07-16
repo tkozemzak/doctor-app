@@ -1,49 +1,65 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <style>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <style>
     .info {
       border: solid;
     }
+
     .notes {
       border: solid;
     }
-    </style>
-  </head>
-  <body>
-    <a href="/editPage/<%=appts.id%>">Edit</a>
-      <div class="info">
-        <h1>Name: <%= appts.patient_name %></h1>
-        <h3>Reason: <%= appts.reason %></h3>
-        <h4>Details: <%= appts.details %></h4>
+  </style>
+</head>
+
+<body>
+  <a href="/editPage/<%=appts.id%>">Edit</a>
+  <div class="info">
+    <h1>Name: <%= appts.patient_name %></h1>
+    <h3>Reason: <%= appts.reason %></h3>
+    <h4>Details: <%= appts.details %></h4>
 
 
 
-<% if(appts.status === "unconfirmed"){ %>
-  <form action="/viewPage/status/<%=appts.id%>" method="post">
-  <input type="text" name="status" value=<%= appts.status%> />
-  <input type="submit" />
-</form>
-  <% } %>
-
-
-      </div>
-      <div class="notes">
-        <h1>Notes:</h1>
-        <% for(let i=0; i<results.length; i++){ %>
-            <p>
-              <%= results[i].note_body %>
-            </p>
-
-          <% } %>
-          <form action="/viewPage" method="post">
-            <input type="text" name="note_body" placeholder="New Note" />
-            <input type="submit" />
+    <% if(appts.status === "unconfirmed"){ %>
+      <form action="/viewPage/status/<%=appts.id%>" method="post">
+        <input type="hidden" name="status" value="confirmed" />
+        <input type="submit" value="Confirm Appointment" />
+      </form>
+      <% } %>
+        <% if(appts.status === "confirmed"){ %>
+          <form action="/viewPage/status/<%=appts.id%>" method="post">
+            <input type="hidden" name="status" value="completed" />
+            <input type="submit" value="Mark as Completed" />
           </form>
+          <% } %>
+            <% if(appts.status === "completed"){ %>
+              <form action="/viewPage/status/delete/<%=appts.id%>" method="post">
+                <input type="hidden" name="status" value="" />
+                <input type="submit" value="Delete Appointment" />
+              </form>
+              <% } %>
 
-      </div>
 
-  </body>
+  </div>
+  <div class="notes">
+    <h1>Notes:</h1>
+    <% for(let i=0; i<results.length; i++){ %>
+      <p>
+        <%= results[i].note_body %>
+      </p>
+
+      <% } %>
+        <form action="/viewPage" method="post">
+          <input type="text" name="note_body" placeholder="New Note" />
+          <input type="submit" />
+        </form>
+
+  </div>
+
+</body>
+
 </html>
